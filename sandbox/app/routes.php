@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
-
+//Route::get('/', function()
+//{
+//	return View::make('hello');
+//});
+//Route::controller("/", "TracController");
 Route::controller("tracs", "TracController");
 Route::controller("accuracys", "AccuracyController");
-Route::controller("parsons", "ParsonController");
+Route::controller("members", "MemberController");
 

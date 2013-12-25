@@ -1,6 +1,6 @@
 <?php
 
-class ParsonController extends BaseController {
+class MemberController extends BaseController {
 
     public function getIndex() {
         $parson_list = [
