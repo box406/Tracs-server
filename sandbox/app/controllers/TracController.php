@@ -4,6 +4,16 @@ class TracController extends BaseController {
 
     public function getIndex() {
 
+        // init
+        $trac_info = [];
+        $trac_list = [];
+
+        // get trac list
+        $trac_list = DB::table('trac_areas')->select('trac_area')->get();
+        foreach ($trac_list as $suffix => $value) {
+            $trac_info[$value->trac_area] = [];
+        } 
+
         // get database from tracs
         $original_trac_info = DB::table('tracs')->join('members', 'tracs.member_id', '=', 'members.id')
                                                 ->join('accuracys', 'tracs.accuracy_id', '=', 'accuracys.id')
@@ -12,7 +22,7 @@ class TracController extends BaseController {
         
         // get database from accuracys & shaping 
         $original_accuracy_list = DB::table('accuracys')->get();
-        $accuracy_list = [];
+        
         foreach ($original_accuracy_list as $suffix => $value) {
             $accuracy_list["accuracy"][$value->id] = $value->accuracy;
         }
