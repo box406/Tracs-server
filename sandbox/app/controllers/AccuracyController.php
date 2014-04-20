@@ -3,15 +3,19 @@
 class AccuracyController extends BaseController {
 
     public function getIndex() {
-        $accuracy_info = [
-          "1" => "A",
-          "2" => "B",
-          "3" => "C",
-          "4" => "D",
-          "5" => "E",
-          "6" => "F"];
-    
+
+        // init
+        $original_accuracy_list = [];
+        $accuracy_list = [];
+
+        // get thi accuracy list
+        $original_accuracy_list = DB::table('accuracys')->get();
+        foreach ($original_accuracy_list as $suffix => $value) {
+            $accuracy_list[$value->id] = $value->accuracy;
+        }
+
         header("Access-Control-Allow-Origin: *");
-        echo json_encode($accuracy_info);
+        return Response::json($accuracy_list);
+        //echo json_encode($accuracy_list);
     }
 }
